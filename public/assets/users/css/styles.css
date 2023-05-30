@@ -1,0 +1,39 @@
+/*
+**************************
+   Import Css Page
+**************************
+*/
+@import url("./welcome.css");
+
+
+
+/*
+**************************
+    Default Css
+**************************
+*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.form-control:focus {
+    border-color: #ddd;
+    box-shadow: none;
+}
+
+/*
+**************************
+    Reuse Css
+**************************
+*/
+#body-area {
+    width: 100%;
+    min-height: 100vh;
+}
+.text-justify {
+    text-align: justify;
+}
+.text-bold {
+    font-weight: bolder;
+}

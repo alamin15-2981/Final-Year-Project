@@ -1,0 +1,38 @@
+/*
+**************************
+    Welcome Page Css
+**************************
+*/
+#welcome-right-part p {
+    letter-spacing: 1px;
+    word-spacing: 9px;
+    line-height: 29px;
+    text-transform: capitalize;
+    margin: 7px 0px;
+}
+#welcome-card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 576px) {
+    #welcome-right-part h1 {
+        font-size: 26px;
+    }
+    #welcome-right-part p {
+        letter-spacing: 0px;
+        line-height: normal;
+        word-spacing: 0px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #welcome-card {
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 1400px) {
+    #welcome-card {
+        width: 45%;
+    }
+}
