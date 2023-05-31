@@ -4,6 +4,7 @@
 **************************
 */
 @import url("./welcome.css");
+@import url("./user_home.css");
 
 
 
@@ -17,9 +18,22 @@
     padding: 0px;
     box-sizing: border-box;
 }
+img {
+    object-fit: cover;
+    object-position: center;
+}
+textarea {
+    resize: none;
+}
 .form-control:focus {
     border-color: #ddd;
     box-shadow: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.cursor-pointer {
+    cursor: pointer;
 }
 
 /*

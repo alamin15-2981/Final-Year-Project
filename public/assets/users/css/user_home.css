@@ -1,0 +1,16 @@
+#user-home-cover-pic {
+    height: 300px;
+    object-position: middle;
+}
+#user-home-job-category > div {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px solid #efefef !important;
+}
+#user-job-card img,
+#profile-small-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
