@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ route('user_home') }}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('company_home') }}">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('user_profile') }}">Profile</a>
+            <a class="nav-link" href="{{ route('company_profile') }}">Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('user_settings') }}">Settings</a>
+            <a class="nav-link" href="{{ route('company_settings') }}">Settings</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('user_watch') }}">Watch</a>
+            <a class="nav-link" href="{{ route('company_watch') }}">Watch</a>
         </li>
         </ul>
         <div class="mx-4">

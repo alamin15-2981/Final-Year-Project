@@ -1,12 +1,12 @@
-@extends("users.layouts.master")
+@extends("company.layouts.master")
 
 <!-- Title For Application -->
 @section("user-title")
-    User Profile Page
+    Company Watch Page
 @endsection
 
 <!-- Main Content Body -->
-@section("user-content-body")
+@section("company-content-body")
     <div class="container my-5 border shadow-sm p-3">
         <div class="row">
             <div class="col-xxl-12">
@@ -15,50 +15,32 @@
                 <img src="{{ asset('assets/users/img/user/user_home_cover.jpg') }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
 
                 <!-- Navigation Menu --> 
-                <x-user-navbar />
+                <x-company-navbar />
                 <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
-                <div class="row">
-                    <!-- profile photo display --> 
-                    <div class="col-xxl-4">
+                <h4 class="text-uppercase text-bold mb-4" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Watch</h4>
 
-                        <figure class="figure">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="...photo" class="img-fluid img-thumbnail shadow-sm figure-img" id="profile_photo_size">
-                            <figcaption class="figure-caption text-center">Md Shovon</figcaption>
-                        </figure>
-
+                <form action="" method="POST"> 
+                    <div class="mb-3">
+                        <label class="form-label">Url <span class="text-success">(Only Youtube Video Embed Url Acceptable)*</span></label>
+                        <input type="url" name="video_url" class="form-control" placeholder="Video Url" required>
                     </div>
-
-                    <!-- Idea share form --> 
-                    <div class="col-xxl-8 shadow p-4">
-                    
-                        <h1 class="text-center">
-                            <i class="fa-solid fa-share-from-square"></i>
-                            Share Your Idea
-                        </h1>
-                        <form action="" method="POST" class="my-4">
-                            <div class="mb-3">
-                                <label class="form-label">Title</label>
-                                <input type="text" name="title" placeholder="Write Text" required class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea name="description" class="form-control" cols="40" rows="7" placeholder="Description" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <input type="submit" name="btn" value="Submit" class="btn btn-sm btn-primary w-100 text-bold">
-                            </div>
-                        </form>
-
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control" cols="40" rows="7" placeholder="Description" required></textarea>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <input type="submit" name="btn" value="Submit" class="btn btn-sm btn-primary w-100 text-bold">
+                    </div>
+                </form>
 
+                <!-- Video watch --> 
+                <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your Watch Video</h4>
 
-                <!-- Information Show --> 
-                <h1 class="text-bold text-center" style="margin-top: 150px;"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
-                <div class="row my-5">
-                    <div class="col-xxl-4">
-                        <div class="card p-3 border rounded shadow-sm">
+                <div class="row my-4">
+                    <div class="col-xxl-6">
+
+                    <div class="card p-3 border rounded shadow-sm">
                             <div>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQbvIliUtNl4LkgK2NlrYz4I2wbJtLAH-D6Q_zt44FZHdhZA6pzWn3ghc6Sw5zg0NFMw&usqp=CAU" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                                 <span>Md Shovon</span> <br>
@@ -68,6 +50,7 @@
                                 <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-bs-toggle="modal" data-bs-target="#updateModal"></i>
                                 <i class="fa-solid fa-trash cursor-pointer"></i>
                             </div>
+                            <iframe class="ratio ratio-16x9 mt-4" src="https://www.youtube.com/embed/iQYBGBzMVXY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                             <p class="text-justify my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur laborum temporibus beatae quos reprehenderit maxime aut perspiciatis, libero commodi cumque assumenda laboriosam error quasi ratione. Repellendus at rem optio a?</p>
 
                             <!-- Update Modal -->
@@ -135,8 +118,10 @@
 
 
                         </div>
+                        
                     </div>
                 </div>
+                
 
             </div>
         </div>

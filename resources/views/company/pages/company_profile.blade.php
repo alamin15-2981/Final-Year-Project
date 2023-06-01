@@ -1,12 +1,12 @@
-@extends("users.layouts.master")
+@extends("company.layouts.master")
 
 <!-- Title For Application -->
 @section("user-title")
-    User Profile Page
+    Company Profile Page
 @endsection
 
 <!-- Main Content Body -->
-@section("user-content-body")
+@section("company-content-body")
     <div class="container my-5 border shadow-sm p-3">
         <div class="row">
             <div class="col-xxl-12">
@@ -15,7 +15,7 @@
                 <img src="{{ asset('assets/users/img/user/user_home_cover.jpg') }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
 
                 <!-- Navigation Menu --> 
-                <x-user-navbar />
+                <x-company-navbar />
                 <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
                 <div class="row">
@@ -34,12 +34,29 @@
                     
                         <h1 class="text-center">
                             <i class="fa-solid fa-share-from-square"></i>
-                            Share Your Idea
+                            Job Post
                         </h1>
                         <form action="" method="POST" class="my-4">
                             <div class="mb-3">
                                 <label class="form-label">Title</label>
-                                <input type="text" name="title" placeholder="Write Text" required class="form-control">
+                                <select name="job_title" class="form-control">
+                                    <option selected disabled>Select An Option</option>
+                                    <option value="Websites, IT & Software">Websites, IT & Software</option>
+                                    <option value="Mobile Phones & Computing">Mobile Phones & Computing</option>
+                                    <option value="Writing & Content">Writing & Content</option>
+                                    <option value="Design, Media & Architecture">Design, Media & Architecture</option>
+                                    <option value="Data Entry & Admin">Data Entry & Admin</option>
+                                    <option value="Engineering & Science">Engineering & Science</option>
+                                    <option value="Product Sourcing & Manufacturing">Product Sourcing & Manufacturing</option>
+                                    <option value="Sales & Marketing">Sales & Marketing</option>
+                                    <option value="Freight, Shipping & Transportation">Freight, Shipping & Transportation</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Business, Accounting, Human Resources & Legal">Business, Accounting, Human Resources & Legal</option>
+                                    <option value="Translation & Languages">Translation & Languages</option>
+                                    <option value="Trades & Services">Trades & Services</option>
+                                    <option value="Health & Medicine">Health & Medicine</option>
+                                    <option value="Jobs for Anyone">Jobs for Anyone</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Description</label>
