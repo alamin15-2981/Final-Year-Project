@@ -71,5 +71,8 @@ Route::view("/company_settings","company.pages.company_settings")->name("company
 # company watch
 Route::get("/company_watch",[CompanyController::class,"watchPage"])->name("company_watch");
 Route::post("/company_watch_data",[CompanyController::class,"watchData"])->name("company_watch_data");
+Route::post("/company_watch_update/{id?}",[CompanyController::class,"updateWatch"])->name("company_watch_update");
+Route::get("/company_watch_delete/{id?}",[CompanyController::class,"deleteWatch"])->name("company_watch_delete");
+Route::post("/company_watch_feedback",[CompanyController::class,"watchFeedback"])->name("company_watch_feedback");
 
 Route::get("/company_logout",[UserController::class,"logoutPage"])->name("company_logout");
