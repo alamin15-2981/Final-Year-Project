@@ -20,7 +20,7 @@
         </li>
         </ul>
         <div class="mx-4">
-            <a href="#" class="btn btn-sm btn-danger">Logout</a>
+            <a href="{{ route('user_logout') }}" class="btn btn-sm btn-danger">Logout</a>
         </div>
     </div>
     </div>

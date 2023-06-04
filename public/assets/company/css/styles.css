@@ -42,7 +42,11 @@ textarea {
     font-weight: bolder;
 }
 #profile_photo_size {
-    height: 400px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /*

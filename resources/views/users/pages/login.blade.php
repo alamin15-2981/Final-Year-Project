@@ -19,8 +19,17 @@
                 <!-- Welcome Right Aside Bar -->
                 <div class="col-xxl-6 d-flex jusify-content-center align-items-center mb-3" id="login-right-part">
                     <div class="w-100 border p-4 shadow">
+
+                        @if(session("login_failed"))
+                            <div class="alert alert-danger text-center">
+                                {{ session("login_failed") }}
+                            </div>
+                        @endif
+
                         <h1 class="display-2 text-bold text-center mb-4">Login Form</h1>
-                        <form action="" method="POST" novalidate> 
+                        <form action="{{ route('loginData') }}" method="POST" novalidate>
+                            @csrf
+                            @method("POST") 
                             <div class="mb-3">
                                 <label class="form-label text-start">Email</label>
                                 <input type="email" name="email" placeholder="Email" class="form-control" required>

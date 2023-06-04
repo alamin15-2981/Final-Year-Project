@@ -19,10 +19,25 @@
                 <!-- Welcome Right Aside Bar -->
                 <div class="col-xxl-6 d-flex jusify-content-center align-items-center my-3" id="login-right-part">
                     <div class="w-100 border p-4 shadow">
+
+                        @if(session("success_msg"))
+                            <div class="alert alert-success text-center">
+                                {{ session("success_msg") }}
+                            </div>
+                        @endif
+
+                        @if(session("failed_msg"))
+                            <div class="alert alert-danger text-center">
+                                {{ session("failed_msg") }}
+                            </div>
+                        @endif
+
                         <h1 class="display-2 text-bold text-center mb-4">Registration Form</h1>
 
                         <!-- form code -->
-                        <form action="" method="post" enctype="multipart/form-data" class="my-4">
+                        <form action="{{ route('user_register_data') }}" method="post" enctype="multipart/form-data" class="my-4" novalidate>
+                            @csrf
+                            @method("POST")
                             <div class="mb-3">
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-user"></i> Name
@@ -51,14 +66,14 @@
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-image"></i> Photo
                                 </label>
-                                <input type="file" name="photo" class="form-control" accept="image/*" required>
+                                <input type="file" name="profile_photo" class="form-control" accept="image/*" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-image"></i> Cover Photo
                                 </label>
-                                <input type="file" name="photo" class="form-control" accept="image/*" required>
+                                <input type="file" name="cover_photo" class="form-control" accept="image/*" required>
                             </div>
 
 

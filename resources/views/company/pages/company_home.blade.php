@@ -24,11 +24,19 @@ Company Home Page
         <!-- Idea share form -->
         <div class="col-xxl-12 p-4">
 
+          @if(session("offers_post_success"))
+            <div class="alert alert-success text-center">
+              {{ session("offers_post_success") }}
+            </div>
+          @endif
+
           <h1 class="text-center">
             <i class="fa-solid fa-arrow-up-wide-short"></i>
             Special Offers
           </h1>
-          <form action="" method="POST" class="my-4">
+          <form action="{{ route('company_offers_data') }}" method="POST" class="my-4">
+            @csrf 
+            @method("POST")
             <div class="mb-3">
               <label class="form-label">Title</label>
               <input type="text" name="title" placeholder="Write Text" required class="form-control">

@@ -18,12 +18,20 @@
                 <x-company-navbar />
                 <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
+                @if(session("watch_post_success"))
+                <div class="alert alert-success text-center">
+                    {{ session("watch_post_success") }}
+                </div>
+                @endif
+
                 <h4 class="text-uppercase text-bold mb-4" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Watch</h4>
 
-                <form action="" method="POST"> 
+                <form action="{{ route('company_watch_data') }}" method="POST"> 
+                    @csrf 
+                    @method("POST")
                     <div class="mb-3">
-                        <label class="form-label">Url <span class="text-success">(Only Youtube Video Embed Url Acceptable)*</span></label>
-                        <input type="url" name="video_url" class="form-control" placeholder="Video Url" required>
+                        <label class="form-label">Url <span class="text-success">(Only Youtube Video Embed Url Acceptable Like -> https://www.youtube.com/embed/_LxSW61f9Cg)*</span></label>
+                        <input type="url" name="title" class="form-control" placeholder="Video Url" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Description</label>
@@ -35,31 +43,32 @@
                 </form>
 
                 <!-- Video watch --> 
-                <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your Watch Video</h4>
+                <h4 class="text-uppercase text-bold mb-4 text-end h6" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your Watch Video</h4>
 
                 <div class="row my-4">
-                    <div class="col-xxl-6">
 
-                    <div class="card p-3 border rounded shadow-sm">
+                    @foreach($newArr as $item) 
+                    <div class="col-xxl-6">
+                        <div class="card p-3 border rounded shadow-sm">
                             <div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQbvIliUtNl4LkgK2NlrYz4I2wbJtLAH-D6Q_zt44FZHdhZA6pzWn3ghc6Sw5zg0NFMw&usqp=CAU" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                <span>Md Shovon</span> <br>
+                                <img src="" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                                <span>{{ $item["name"] }}</span> <br>
                             </div>
                             <div class="text-end">
-                                <span>6/1/2023 <time>2:55 AM</time> </span> <br>
+                                <span>{{ $item["updated_at"] }}</span> <br>
                                 <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-bs-toggle="modal" data-bs-target="#updateModal"></i>
                                 <i class="fa-solid fa-trash cursor-pointer"></i>
                             </div>
-                            <iframe class="ratio ratio-16x9 mt-4" src="https://www.youtube.com/embed/iQYBGBzMVXY" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                            <p class="text-justify my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur laborum temporibus beatae quos reprehenderit maxime aut perspiciatis, libero commodi cumque assumenda laboriosam error quasi ratione. Repellendus at rem optio a?</p>
+                            <iframe class="ratio ratio-16x9 mt-4" src="{{ $item['url'] }}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                            <p class="text-justify my-3">{{ $item["description"] }}</p>
 
                             <!-- Update Modal -->
                             <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <img src="https://media.istockphoto.com/id/1177915762/fr/photo/bel-homme-latin.jpg?s=612x612&w=0&k=20&c=p0fE_GYI2mWBJkVkDncsHK_r8UB-DL5h3W5wJPBqJX0=" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                            <span>Md Shovon</span>
+                                            <img src="{{ $item['profile_photo'] }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                                            <span>{{ $item['name'] }}</span>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -116,10 +125,10 @@
                                 </div>
                             </div>
 
-
                         </div>
-                        
                     </div>
+                    @endforeach
+                        
                 </div>
                 
 

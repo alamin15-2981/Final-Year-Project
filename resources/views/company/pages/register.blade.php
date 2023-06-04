@@ -19,10 +19,24 @@
                 <!-- Welcome Right Aside Bar -->
                 <div class="col-xxl-6 d-flex jusify-content-center align-items-center my-3" id="login-right-part">
                     <div class="w-100 border p-4 shadow">
+
+                        @if(session("failed_msg"))
+                            <div class="alert alert-danger text-center">
+                                {{ session("failed_msg") }}
+                            </div>
+                        @endif
+                        @if(session("success_msg"))
+                            <div class="alert alert-success text-center">
+                                {{ session("success_msg") }}
+                            </div>
+                        @endif
+
                         <h1 class="display-2 text-bold text-center mb-4">Registration Form</h1>
 
                         <!-- form code -->
-                        <form action="" method="post" enctype="multipart/form-data" class="my-4">
+                        <form action="{{ route('company_register_data') }}" method="post" enctype="multipart/form-data" class="my-4">
+                            @csrf
+                            @method("POST")
                             <div class="mb-3">
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-user"></i> Name
@@ -51,14 +65,14 @@
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-image"></i> Photo
                                 </label>
-                                <input type="file" name="photo" class="form-control" accept="image/*" required>
+                                <input type="file" name="profile_photo" class="form-control" accept="image/*" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">
                                     <i class="fa-sharp fa-solid fa-image"></i> Cover Photo
                                 </label>
-                                <input type="file" name="photo" class="form-control" accept="image/*" required>
+                                <input type="file" name="cover_photo" class="form-control" accept="image/*" required>
                             </div>
 
 
@@ -92,7 +106,7 @@
                                 <input type="submit" value="Sign Up" class="btn btn-sm btn-primary text-bold text-light w-100 py-2 text-uppercase">
                                 <span class="text-center mt-4 d-block">
                                     If you have already registered than login now
-                                    <a href="{{ route('user_login') }}" class="text-decoration-none">Login</a>
+                                    <a href="{{ route('company_login') }}" class="text-decoration-none">Login</a>
                                 </span>
                             </div>
                         </form>

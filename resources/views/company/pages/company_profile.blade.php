@@ -20,26 +20,34 @@
 
                 <div class="row">
                     <!-- profile photo display --> 
-                    <div class="col-xxl-4">
+                    <div class="col-xxl-12 text-end">
 
                         <figure class="figure">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="...photo" class="img-fluid img-thumbnail shadow-sm figure-img" id="profile_photo_size">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" alt="...photo" class="img-fluid img-thumbnail shadow-sm figure-img rounded-circle" id="profile_photo_size">
                             <figcaption class="figure-caption text-center">Md Shovon</figcaption>
                         </figure>
 
                     </div>
 
                     <!-- Idea share form --> 
-                    <div class="col-xxl-8 shadow p-4">
+                    <div class="col-xxl-12 p-4">
+
+                            @if(session("job_post_success")) 
+                                <div class="alert alert-success text-center">
+                                    {{ session("job_post_success") }}
+                                </div>
+                            @endif
                     
                         <h1 class="text-center">
                             <i class="fa-solid fa-share-from-square"></i>
                             Job Post
                         </h1>
-                        <form action="" method="POST" class="my-4">
+                        <form action="{{ route('company_job_post') }}" method="POST" class="my-4">
+                            @csrf 
+                            @method("POST")
                             <div class="mb-3">
                                 <label class="form-label">Title</label>
-                                <select name="job_title" class="form-control">
+                                <select name="title" class="form-control">
                                     <option selected disabled>Select An Option</option>
                                     <option value="Websites, IT & Software">Websites, IT & Software</option>
                                     <option value="Mobile Phones & Computing">Mobile Phones & Computing</option>
@@ -72,9 +80,9 @@
 
 
                 <!-- Information Show --> 
-                <h1 class="text-bold text-center" style="margin-top: 150px;"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
+                <h1 class="text-bold text-end mt-4 h5"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
                 <div class="row my-5">
-                    <div class="col-xxl-4">
+                    <div class="col-xxl-6">
                         <div class="card p-3 border rounded shadow-sm">
                             <div>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQbvIliUtNl4LkgK2NlrYz4I2wbJtLAH-D6Q_zt44FZHdhZA6pzWn3ghc6Sw5zg0NFMw&usqp=CAU" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">

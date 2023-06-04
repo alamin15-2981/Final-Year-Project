@@ -1,4 +1,4 @@
-@extends("company.layouts.master")
+@extends("users.layouts.master")
 
 <!-- Title For Application -->
 @section("user-title")

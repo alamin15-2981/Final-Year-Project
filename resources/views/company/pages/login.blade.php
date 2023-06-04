@@ -19,8 +19,17 @@
                 <!-- Welcome Right Aside Bar -->
                 <div class="col-xxl-6 d-flex jusify-content-center align-items-center mb-3" id="login-right-part">
                     <div class="w-100 border p-4 shadow">
+
+                        @if(session("login_failed"))
+                            <div class="alert alert-danger text-center">
+                                {{ session("login_failed") }}
+                            </div>
+                        @endif
+
                         <h1 class="display-2 text-bold text-center mb-4">Login Form</h1>
-                        <form action="" method="POST" novalidate> 
+                        <form action="{{ route('loginData') }}" method="POST" novalidate>
+                            @csrf 
+                            @method("POST") 
                             <div class="mb-3">
                                 <label class="form-label text-start">Email</label>
                                 <input type="email" name="email" placeholder="Email" class="form-control" required>
@@ -31,10 +40,10 @@
                             </div>
                             <div class="mb-3">
                                 <input type="submit" value="Login" class="btn btn-sm btn-primary text-bold text-light w-100 py-2 text-uppercase">
-                                <a href="{{ route('user_forgot_password') }}" class="text-decoration-none text-center mt-4 d-block">Forgot password?</a>
+                                <a href="{{ route('company_forgot_password') }}" class="text-decoration-none text-center mt-4 d-block">Forgot password?</a>
                                 <span class="text-center mt-4 d-block">
                                     If you have not registered, than register now 
-                                    <a href="{{ route('user_register') }}" class="text-decoration-none">Register</a>
+                                    <a href="{{ route('company_register') }}" class="text-decoration-none">Register</a>
                                 </span>
                             </div>
                         </form>
