@@ -25,9 +25,9 @@ Company Home Page
         <div class="col-xxl-12 p-4">
 
           @if(session("offers_post_success"))
-            <div class="alert alert-success text-center">
-              {{ session("offers_post_success") }}
-            </div>
+          <div class="alert alert-success text-center">
+            {{ session("offers_post_success") }}
+          </div>
           @endif
 
           <h1 class="text-center">
@@ -35,7 +35,7 @@ Company Home Page
             Special Offers
           </h1>
           <form action="{{ route('company_offers_data') }}" method="POST" class="my-4">
-            @csrf 
+            @csrf
             @method("POST")
             <div class="mb-3">
               <label class="form-label">Title</label>
@@ -56,19 +56,22 @@ Company Home Page
         <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your's Offer</h4>
         <div class="row gy-3">
 
+          @foreach($offers as $item)
           <div class="col-xxl-6">
             <div class="border rounded p-3 shadow-sm cursor-pointer">
               <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQbvIliUtNl4LkgK2NlrYz4I2wbJtLAH-D6Q_zt44FZHdhZA6pzWn3ghc6Sw5zg0NFMw&usqp=CAU" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                <span>Md Shovon</span> <br>
+                <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                <span>{{ $item["name"] }}</span> <br>
               </div>
-              <strong class="ms-4 d-block text-center"># Web Design</strong>
+              <strong class="ms-4 d-block text-center"># {{ $item["title"] }}</strong>
               <div class="text-end">
-                <span>6/1/2023 <time>2:55 AM</time> </span> <br>
+                <span>{{ $item["updated_at"] }}</span> <br>
                 <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-bs-toggle="modal" data-bs-target="#updateModal"></i>
-                <i class="fa-solid fa-trash cursor-pointer"></i>
+                <a href="{{ URL::to('company_offers_delete/'.$item['id']) }}">
+                  <i class="fa-solid fa-trash cursor-pointer"></i>
+                </a>
               </div>
-              <p class="text-justify ms-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora recusandae neque maiores odit, laboriosam ea unde ratione. Minus, eos fuga.</p>
+              <p class="text-justify ms-4">{{ $item["description"] }}</p>
             </div>
           </div>
 
@@ -78,19 +81,21 @@ Company Home Page
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <img src="https://media.istockphoto.com/id/1177915762/fr/photo/bel-homme-latin.jpg?s=612x612&w=0&k=20&c=p0fE_GYI2mWBJkVkDncsHK_r8UB-DL5h3W5wJPBqJX0=" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                  <span>Md Shovon</span>
+                  <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                  <span>{{ $item["name"] }}</span>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="" method="POST" class="my-4">
+                  <form action="{{ URL::to('company_offers_update/'.$item['id']) }}" method="POST" class="my-4">
+                    @csrf 
+                    @method("POST")
                     <div class="mb-3">
                       <label class="form-label">Title</label>
-                      <input type="text" name="title" placeholder="Write Text" required class="form-control">
+                      <input type="text" name="title" placeholder="Write Text" required class="form-control" value="{{ $item['title'] }}">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Description</label>
-                      <textarea name="description" class="form-control" cols="40" rows="7" placeholder="Description" required></textarea>
+                      <textarea name="description" class="form-control" cols="40" rows="7" placeholder="Description" required>{{ $item['description'] }}</textarea>
                     </div>
                     <div class="mb-3">
                       <input type="submit" name="btn" value="Update" class="btn btn-sm btn-primary w-100 text-bold">
@@ -100,6 +105,7 @@ Company Home Page
               </div>
             </div>
           </div>
+          @endforeach
 
         </div>
 
@@ -109,18 +115,20 @@ Company Home Page
 
         <!-- Project ideas -->
         <div class="row my-5">
+
+          @foreach($idea as $item)
           <div class="col-xxl-6">
             <div class="card p-3 border rounded shadow-sm">
               <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHQbvIliUtNl4LkgK2NlrYz4I2wbJtLAH-D6Q_zt44FZHdhZA6pzWn3ghc6Sw5zg0NFMw&usqp=CAU" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                <span>Md Shovon</span> <br>
+                <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                <span>{{ $item["name"] }}</span> <br>
               </div>
-              <strong class="ms-4"># Web Design</strong>
+              <strong class="ms-4 text-center"># {{ $item["title"] }}</strong>
               <div class="text-end">
-                <span>6/1/2023 <time>2:55 AM</time> </span> <br>
+                <span>{{ $item["updated_at"] }}</span> <br>
               </div>
-              <p class="text-justify my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur laborum temporibus beatae quos reprehenderit maxime aut perspiciatis, libero commodi cumque assumenda laboriosam error quasi ratione. Repellendus at rem optio a?</p>
-              
+              <p class="text-justify my-3">{{ $item["description"] }}</p>
+
 
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -132,18 +140,20 @@ Company Home Page
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <img src="https://media.istockphoto.com/id/1177915762/fr/photo/bel-homme-latin.jpg?s=612x612&w=0&k=20&c=p0fE_GYI2mWBJkVkDncsHK_r8UB-DL5h3W5wJPBqJX0=" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                      <span>Md Shovon</span>
+                      <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                      <span>{{ $item["name"] }}</span>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf 
+                        @method("POST")
                         <div class="mb-3">
                           <label class="form-label">Comment</label>
                           <textarea name="comment" cols="40" rows="7" placeholder="Message" required class="form-control"></textarea>
                         </div>
                         <div class="mb-3">
-                          <input type="submit" name="btn" value="Upload" class="btn btn-sm btn-primary w-100">
+                          <input type="submit" name="btn" value="Submit" class="btn btn-sm btn-primary w-100">
                         </div>
                       </form>
                     </div>
@@ -160,6 +170,8 @@ Company Home Page
 
             </div>
           </div>
+          @endforeach
+
         </div>
 
 

@@ -84,7 +84,7 @@ Company Watch Page
                                 </div>
                                 <div class="modal-body">
                                     <form action="{{ URL::to('/company_watch_update/'.$item['id']) }}" method="POST" class="my-4">
-                                        @csrf 
+                                        @csrf
                                         @method("POST")
                                         <div class="mb-3">
                                             <label class="form-label">Title</label>
@@ -114,7 +114,7 @@ Company Watch Page
                                 </div>
                                 <div class="modal-body">
                                     <form action="{{ route('company_watch_feedback') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf 
+                                        @csrf
                                         @method("POST")
                                         <div class="mb-3">
                                             <label class="form-label">Comment</label>
@@ -125,12 +125,16 @@ Company Watch Page
                                         </div>
                                     </form>
                                 </div>
+                                @foreach($feedback as $data)
                                 <div class="my-4 px-3 shadow-sm">
-                                    <img src="https://media.istockphoto.com/id/1177915762/fr/photo/bel-homme-latin.jpg?s=612x612&w=0&k=20&c=p0fE_GYI2mWBJkVkDncsHK_r8UB-DL5h3W5wJPBqJX0=" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                    <span>Md Shovon</span>
-                                    <i class="fa-solid fa-trash cursor-pointer float-end"></i>
-                                    <p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere aperiam nihil exercitationem soluta vitae unde sint consectetur dolorum sunt aliquid.</p>
+                                    <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                                    <span>{{ $item["name"] }}</span>
+                                    <a href="{{ URL::to('/company_watch_delete_feedback/'.$data['id']) }}">
+                                        <i class="fa-solid fa-trash cursor-pointer float-end"></i>
+                                    </a>
+                                    <p class="text-justify">{{ $data["comment"] }}</p>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

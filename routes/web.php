@@ -46,27 +46,34 @@ Route::get("/user_logout",[UserController::class,"logoutPage"])->name("user_logo
 # Company Page Routes
 
 # login
-Route::view("/company_login","company.pages.login")->name("company_login");
+Route::get("/company_login",[CompanyController::class,"loginPage"])->name("company_login");
 Route::post("/loginData",[CompanyController::class,"loginData"])->name("loginData");
 
 # registration
-Route::view("/company_register","company.pages.register")->name("company_register");
+Route::get("/company_register",[CompanyController::class,"registrationPage"])->name("company_register");
 Route::post("/company_register_data",[CompanyController::class,"registerDataSave"])->name("company_register_data");
 
-Route::view("/company_forgot_password","company.pages.forgot")->name("company_forgot_password");
+# forgot password
+Route::get("/company_forgot_password",[CompanyController::class,"forgotPage"])->name("company_forgot_password");
 
 # company home
-Route::view("/company_home","company.pages.company_home")->name("company_home");
+Route::get("/company_home",[CompanyController::class,"homePage"])->name("company_home");
 Route::post("/company_offers_data",[CompanyController::class,"offersData"])->name("company_offers_data");
+Route::post("/company_offers_update/{id?}",[CompanyController::class,"updateOffers"])->name("company_offers_update");
+Route::get("/company_offers_delete/{id?}",[CompanyController::class,"deleteOffers"])->name("company_offers_delete");
 
-
-Route::view("/company_job_show","company.pages.company_job_show")->name("company_job_show");
 
 # company profile
-Route::view("/company_profile","company.pages.company_profile")->name("company_profile");
+Route::get("/company_profile",[CompanyController::class,"profilePage"])->name("company_profile");
 Route::post("/company_job_post",[CompanyController::class,"jobPost"])->name("company_job_post");
+Route::post("/company_job_update/{id?}",[CompanyController::class,"updatePost"])->name("company_job_update");
+Route::get("/company_job_delete/{id?}",[CompanyController::class,"deletePost"])->name("company_job_delete");
+Route::post("/company_job_feedback",[CompanyController::class,"jobFeedback"])->name("company_job_feedback");
+Route::get("/company_job_feedback_delete/{id?}",[CompanyController::class,"deleteJobFeedback"])->name("company_job_feedback_delete");
 
-Route::view("/company_settings","company.pages.company_settings")->name("company_settings");
+# company settings
+Route::get("/company_settings",[CompanyController::class,"settingsPage"])->name("company_settings");
+Route::post("/company_settings_update",[CompanyController::class,"settingsUpdate"])->name("company_settings_update");
 
 # company watch
 Route::get("/company_watch",[CompanyController::class,"watchPage"])->name("company_watch");
@@ -74,5 +81,6 @@ Route::post("/company_watch_data",[CompanyController::class,"watchData"])->name(
 Route::post("/company_watch_update/{id?}",[CompanyController::class,"updateWatch"])->name("company_watch_update");
 Route::get("/company_watch_delete/{id?}",[CompanyController::class,"deleteWatch"])->name("company_watch_delete");
 Route::post("/company_watch_feedback",[CompanyController::class,"watchFeedback"])->name("company_watch_feedback");
+Route::get("/company_watch_delete_feedback/{id?}",[CompanyController::class,"deleteFeedback"])->name("company_watch_delete_feedback");
 
-Route::get("/company_logout",[UserController::class,"logoutPage"])->name("company_logout");
+Route::get("/company_logout",[CompanyController::class,"logoutPage"])->name("company_logout");
