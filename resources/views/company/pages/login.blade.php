@@ -40,7 +40,7 @@
                             </div>
                             <div class="mb-3">
                                 <input type="submit" value="Login" class="btn btn-sm btn-primary text-bold text-light w-100 py-2 text-uppercase">
-                                <a href="{{ route('company_forgot_password') }}" class="text-decoration-none text-center mt-4 d-block">Forgot password?</a>
+                                <a href="{{ route('company_change_password') }}" class="text-decoration-none text-center mt-4 d-block">Change password?</a>
                                 <span class="text-center mt-4 d-block">
                                     If you have not registered, than register now 
                                     <a href="{{ route('company_register') }}" class="text-decoration-none">Register</a>

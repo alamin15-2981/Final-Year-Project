@@ -12,7 +12,7 @@
             <div class="col-xxl-12">
 
                 <!-- User Home Cover Photo -->
-                <img src="{{ asset('assets/users/img/user/user_home_cover.jpg') }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
+                <img src="{{ asset('storage/img/company/register/cover/'.$info['cover_photo']) }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
 
                 <!-- Navigation Menu --> 
                 <x-company-navbar />

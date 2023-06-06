@@ -27,7 +27,7 @@
                         @endif
 
                         <h1 class="display-2 text-bold text-center mb-4">Login Form</h1>
-                        <form action="{{ route('loginData') }}" method="POST" novalidate>
+                        <form action="{{ route('user_loginData') }}" method="POST">
                             @csrf
                             @method("POST") 
                             <div class="mb-3">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="mb-3">
                                 <input type="submit" value="Login" class="btn btn-sm btn-primary text-bold text-light w-100 py-2 text-uppercase">
-                                <a href="{{ route('user_forgot_password') }}" class="text-decoration-none text-center mt-4 d-block">Forgot password?</a>
+                                <a href="{{ route('user_change_password') }}" class="text-decoration-none text-center mt-4 d-block">Change password?</a>
                                 <span class="text-center mt-4 d-block">
                                     If you have not registered, than register now 
                                     <a href="{{ route('user_register') }}" class="text-decoration-none">Register</a>

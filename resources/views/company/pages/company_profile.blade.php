@@ -151,6 +151,7 @@ Company Profile Page
                                             @method("POST")
                                             <div class="mb-3">
                                                 <label class="form-label">Comment</label>
+                                                <input type="hidden" id="inputId" name="job_id">
                                                 <textarea name="comment" cols="40" rows="7" placeholder="Message" required class="form-control"></textarea>
                                             </div>
                                             <div class="mb-3">
@@ -159,7 +160,7 @@ Company Profile Page
                                         </form>
                                     </div>
 
-                                    @foreach($feedback as $data)
+                                    @foreach($feedback as $data) 
                                     <div class="my-4 px-3 shadow-sm">
                                         <img src="{{ asset('storage/img/company/register/profile/'.$data['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                                         <span>{{ $data['name'] }}</span>

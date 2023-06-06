@@ -23,27 +23,48 @@ Route::get('/', function () {
 # User Page Routes
 ##########################
 
-#login
+# login
 Route::get("/user_login",[UserController::class,"loginPage"])->name("user_login");
-Route::post("/loginData",[UserController::class,"loginData"])->name("loginData");
+Route::post("/user_loginData",[UserController::class,"loginData"])->name("user_loginData");
 
-#registration
+# registration
 Route::get("/user_register",[UserController::class,"registrationPage"])->name("user_register");
 Route::post("/user_register_data",[UserController::class,"registerDataSave"])->name("user_register_data");
 
-Route::view("/user_forgot_password","users.pages.forgot")->name("user_forgot_password");
-Route::view("/user_home","users.pages.user_home")->name("user_home");
-Route::view("/user_job_show","users.pages.user_job_show")->name("user_job_show");
+# change password
+Route::get("/user_change_password",[UserController::class,"passwordPage"])->name("user_change_password");
+Route::post("/user_change_password_edit",[UserController::class,"changePassword"])->name("user_change_password_edit");
+
+# home page
+Route::get("/user_home",[UserController::class,"homePage"])->name("user_home");
+Route::get("/user_job_show",[UserController::class,"showJob"])->name("user_job_show");
 
 # users profile 
-Route::view("/user_profile","users.pages.user_profile")->name("user_profile");
+Route::get("/user_profile",[UserController::class,"profilePage"])->name("user_profile");
 Route::post("/user_profile_data",[UserController::class,"profileData"])->name("user_profile_data");
+Route::post("/user_profile_data_update/{id?}",[UserController::class,"updatePost"])->name("user_profile_data_update");
+Route::get("/user_profile_data_delete/{id?}",[UserController::class,"deletePost"])->name("user_profile_data_delete");
 
-Route::view("/user_settings","users.pages.user_settings")->name("user_settings");
-Route::view("/user_watch","users.pages.user_watch")->name("user_watch");
+# users settings 
+Route::get("/user_settings",[UserController::class,"settingsPage"])->name("user_settings");
+Route::post("/user_settings_update",[UserController::class,"settingsUpdate"])->name("user_settings_update");
+
+# user watch
+Route::get("/user_watch",[UserController::class,"watchPage"])->name("user_watch");
+
+# user logout
 Route::get("/user_logout",[UserController::class,"logoutPage"])->name("user_logout");
 
+
+
+
+
+
+
+
+##########################
 # Company Page Routes
+##########################
 
 # login
 Route::get("/company_login",[CompanyController::class,"loginPage"])->name("company_login");
@@ -54,14 +75,14 @@ Route::get("/company_register",[CompanyController::class,"registrationPage"])->n
 Route::post("/company_register_data",[CompanyController::class,"registerDataSave"])->name("company_register_data");
 
 # forgot password
-Route::get("/company_forgot_password",[CompanyController::class,"forgotPage"])->name("company_forgot_password");
+Route::get("/company_change_password",[CompanyController::class,"passwordPage"])->name("company_change_password");
+Route::post("/company_change_password_edit",[CompanyController::class,"changePassword"])->name("company_change_password_edit");
 
 # company home
 Route::get("/company_home",[CompanyController::class,"homePage"])->name("company_home");
 Route::post("/company_offers_data",[CompanyController::class,"offersData"])->name("company_offers_data");
 Route::post("/company_offers_update/{id?}",[CompanyController::class,"updateOffers"])->name("company_offers_update");
 Route::get("/company_offers_delete/{id?}",[CompanyController::class,"deleteOffers"])->name("company_offers_delete");
-
 
 # company profile
 Route::get("/company_profile",[CompanyController::class,"profilePage"])->name("company_profile");
@@ -83,4 +104,5 @@ Route::get("/company_watch_delete/{id?}",[CompanyController::class,"deleteWatch"
 Route::post("/company_watch_feedback",[CompanyController::class,"watchFeedback"])->name("company_watch_feedback");
 Route::get("/company_watch_delete_feedback/{id?}",[CompanyController::class,"deleteFeedback"])->name("company_watch_delete_feedback");
 
+# company logout
 Route::get("/company_logout",[CompanyController::class,"logoutPage"])->name("company_logout");

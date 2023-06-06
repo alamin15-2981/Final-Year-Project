@@ -18,10 +18,10 @@ class CompanyController extends Controller
     # company registration page display
     public function registrationPage()
     {
-        if(session("gmail"))
+        if (session("gmail"))
             return redirect("company_home");
         else
-        return view("company.pages.register");
+            return view("company.pages.register");
     }
 
     # company insert of users registration page
@@ -97,12 +97,38 @@ class CompanyController extends Controller
         return redirect("company_login");
     }
 
-    # company forgot page 
-    public function forgotPage() {
-        if(session('gmail'))
+    # company passwordPage 
+    public function passwordPage()
+    {
+        if (session('gmail'))
             return redirect("company_home");
-        else 
-        return view("company.pages.forgot");
+        else
+            return view("company.pages.password");
+    }
+
+    # company changePassword
+    public function changePassword(Request $req) {
+        $email = $req->input("email");
+        $old_password = $req->input("old_password");
+        $new_password = $req->input("new_password");
+
+        $data = (array) DB::table("company_registration")
+        ->where("email",$email)
+        ->first();
+        $id = $data['id'];
+
+        if($data) {
+            $password = $data["password"];
+            if(password_verify($old_password,$password)) {
+                $create_password = password_hash($new_password,PASSWORD_BCRYPT);
+                $info = CompanyRegister::find($id);
+                $info->password = $create_password;
+                $info->save();
+
+                session()->flash("msg","Password Reset Successfully");
+            }
+        }
+        return redirect("company_change_password");
     }
 
     # company homePage 
@@ -192,10 +218,12 @@ class CompanyController extends Controller
             $jobs[] = (array) $data;
         }
 
+        $info = (array) DB::table("company_registration")
+            ->where("email", session("gmail"))->first();
 
         $jobFeedback = DB::table("company_job_feedback")
             ->join("company_registration", "company_registration.id", "company_job_feedback.company_id")
-            ->select("company_job_feedback.*", "company_registration.*")
+            ->select("company_registration.*", "company_job_feedback.*")
             ->get()
             ->toArray();
 
@@ -204,11 +232,9 @@ class CompanyController extends Controller
             $feedback[] = (array) $item;
         }
 
-        $info = (array) DB::table("company_registration")
-            ->where("email", session("gmail"))->first();
 
         if (session("gmail"))
-            return view("company.pages.company_profile", compact('jobs', "feedback", "info"));
+            return view("company.pages.company_profile", compact("jobs","feedback","info"));
         else
             return redirect("company_login");
     }
@@ -258,7 +284,6 @@ class CompanyController extends Controller
     # company jobFeedback
     public function jobFeedback(Request $req)
     {
-
         $data = (array) DB::table("company_registration")
             ->where("email", session("gmail"))->first();
 
@@ -350,7 +375,7 @@ class CompanyController extends Controller
             $feedback = CompanyWatchFeedback::all()->toArray();
             return view("company.pages.company_watch", compact("newArr", "feedback"));
         } else
-        return redirect("company_login");
+            return redirect("company_login");
     }
 
     # company watchData
