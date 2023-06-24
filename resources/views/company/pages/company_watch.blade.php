@@ -42,6 +42,7 @@ Company Watch Page
                 </div>
             </form>
 
+            @if(count($newArr))
             <!-- Video watch -->
             <h4 class="text-uppercase text-bold mb-4 text-end h6" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your Watch Video</h4>
 
@@ -143,6 +144,7 @@ Company Watch Page
                 @endforeach
 
             </div>
+            @endif
 
 
         </div>

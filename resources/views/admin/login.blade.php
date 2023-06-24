@@ -1,4 +1,4 @@
-@extends("users.layouts.master")
+@extends("admin.layouts.master")
 
 <!-- Title For Application -->
 @section("user-title")
@@ -6,14 +6,14 @@
 @endsection
 
 <!-- Main Content Body -->
-@section("user-content-body")
+@section("admin-content-body")
     <section id="body-area" class="d-flex justify-content-center align-items-center flex-wrap">
         <div class="container-fluid">
             <div class="row">
 
                 <!-- Welcome Left Aside Bar -->
                 <div class="col-xxl-6 text-center" id="login-left-part">
-                    <img src="{{ asset('assets/users/img/user/accounts _ man, workspace, desk, laptop, login, user_md.png') }}" alt="...photo" class="img-fluid">
+                    <img src="{{ asset('assets/admin/img/admin_login.jpg') }}" alt="...photo" class="img-fluid">
                 </div>
 
                 <!-- Welcome Right Aside Bar -->
@@ -25,8 +25,8 @@
                             </div>
                         @endif
 
-                        <h1 class="display-2 text-bold text-center mb-4">Login Form</h1>
-                        <form action="{{ route('user_loginData') }}" method="POST">
+                        <h1 class="display-2 text-bold text-center mb-4">Admin Login Form</h1>
+                        <form action="{{ route('admin_loginData') }}" method="POST">
                             @csrf
                             @method("POST") 
                             <div class="mb-3">
@@ -39,11 +39,6 @@
                             </div>
                             <div class="mb-3">
                                 <input type="submit" value="Login" class="btn btn-sm btn-primary text-bold text-light w-100 py-2 text-uppercase">
-                                <a href="{{ route('user_change_password') }}" class="text-decoration-none text-center mt-4 d-block">Change password?</a>
-                                <span class="text-center mt-4 d-block">
-                                    If you have not registered, than register now 
-                                    <a href="{{ route('user_register') }}" class="text-decoration-none">Register</a>
-                                </span>
                             </div>
                         </form>
                     </div>

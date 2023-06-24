@@ -64,6 +64,7 @@ User Profile Page
 
 
             <!-- Information Show -->
+            @if(count($jobs))
             <h1 class="text-end mt-4 h5"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
             <div class="row my-5">
 
@@ -120,6 +121,7 @@ User Profile Page
                 @endforeach
 
             </div>
+        @endif
 
         </div>
     </div>

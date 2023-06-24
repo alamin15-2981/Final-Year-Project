@@ -25,7 +25,6 @@
                     <div class="col-xxl-12">
                         <div class="table-responsive">
                             <table class="table table-borderless table-hover align-middle" style="font-size: 20px;">
-                                <caption class="text-center">Your's Information</caption>
                                 <tr>
                                     <td>Name</td>
                                     <td>{{ $info["name"] }}</td>
@@ -33,10 +32,6 @@
                                 <tr>
                                     <td>Email</td>
                                     <td>{{ $info["email"] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td>{{ $info["password"] }}</td>
                                 </tr>
                                 <tr>
                                     <td>Profile Photo</td>

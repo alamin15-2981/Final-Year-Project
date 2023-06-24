@@ -79,6 +79,7 @@ Company Profile Page
             </div>
 
 
+            @if(count($jobs))
             <!-- Information Show -->
             <h1 class="text-bold text-end mt-4 h5"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
             <div class="row my-5">
@@ -181,6 +182,7 @@ Company Profile Page
                 @endforeach
 
             </div>
+            @endif
 
         </div>
     </div>

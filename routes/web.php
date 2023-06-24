@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +107,32 @@ Route::get("/company_watch_delete_feedback/{id?}",[CompanyController::class,"del
 
 # company logout
 Route::get("/company_logout",[CompanyController::class,"logoutPage"])->name("company_logout");
+
+
+
+
+##########################
+# Admin Page Routes
+##########################
+
+# login page
+Route::get("/admin",[AdminController::class,"loginPage"])->name("admin");
+Route::post("/admin_loginData",[AdminController::class,"loginValidation"])->name("admin_loginData");
+
+# User's information
+# home page
+Route::get("/admin_home",[AdminController::class,"homePage"])->name("admin_home");
+
+# share idea from user
+Route::get("/admin_user_share_idea",[AdminController::class,"userIdeaShare"])->name("admin_user_share_idea");
+
+
+# Company's information
+# job post page
+Route::get("/admin_job_post",[AdminController::class,"showPostJob"])->name("admin_job_post");
+
+# offers page
+Route::get("/admin_offers",[AdminController::class,"companyOffers"])->name("admin_offers");
+
+# watch page
+Route::get("/admin_watch",[AdminController::class,"watchPage"])->name("admin_watch");

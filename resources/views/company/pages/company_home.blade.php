@@ -52,6 +52,7 @@ Company Home Page
 
         </div>
 
+        @if(count($offers))
         <!-- special offers -->
         <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your's Offer</h4>
         <div class="row gy-3">
@@ -108,9 +109,10 @@ Company Home Page
           @endforeach
 
         </div>
+        @endif
 
 
-
+        @if(count($idea))
         <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Project Ideas</h4>
 
         <!-- Project ideas -->
@@ -173,6 +175,8 @@ Company Home Page
           @endforeach
 
         </div>
+
+        @endif
 
 
       </div>

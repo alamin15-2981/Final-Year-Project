@@ -28,6 +28,7 @@ class UserController extends Controller
     public function registerDataSave(Request $req)
     {
 
+        $user_id = uniqid();
         $name = $req->input("name");
         $email = $req->input("email");
 
@@ -58,6 +59,7 @@ class UserController extends Controller
         ]);
 
         $user_register = new UsersRegister;
+        $user_register->user_id = $user_id;
         $user_register->name = $name;
         $user_register->email = $email;
         $user_register->password = $encrypt_password;
@@ -89,6 +91,7 @@ class UserController extends Controller
 
         $data =  DB::table("users_registration")->where("email", $email)->first();
         $count = DB::table("users_registration")->where("email", $email)->count();
+
         if ($count == 1 and password_verify($password, $data->password)) {
             session()->put("gmail", $email);
             return redirect("user_home");
@@ -153,9 +156,16 @@ class UserController extends Controller
         foreach ($jobTitle as $title) {
             $info[] = (array) $title;
         }
+        
+        $registerData = (array) DB::table("users_registration")
+        ->where("email",session("gmail"))
+        ->get()
+        ->first();
+
+        $user_id = $registerData['user_id'];
 
         if (session("gmail"))
-            return view("users.pages.user_home", compact("offers", "info"));
+            return view("users.pages.user_home", compact("offers","info","user_id"));
         else
             return redirect("user_login");
     }

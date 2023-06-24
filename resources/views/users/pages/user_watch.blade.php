@@ -18,6 +18,8 @@ User Watch Page
             <x-user-navbar />
             <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
+            @if(count($newArr))
+
             <h4 class="text-uppercase text-bold mb-4" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Watch</h4>
 
             <!-- Video watch -->
@@ -40,6 +42,8 @@ User Watch Page
                 @endforeach
 
             </div>
+
+        @endif
 
         </div>
     </div>

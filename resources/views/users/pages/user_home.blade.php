@@ -18,6 +18,8 @@ User Home Page
       <x-user-navbar />
       <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
+      @if(count($info))
+
       <h4 class="text-uppercase text-bold mb-4" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Job Categories</h4>
 
       <!-- Job Catergory Section -->
@@ -29,9 +31,6 @@ User Home Page
             <div class="rounded p-3 position-relative">
               <i class="fa-sharp fa-solid fa-arrow-right me-4"></i>
               {{ $data['title'] }}
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-                99+
-              </span>
             </div>
           </a>
         </div>
@@ -39,7 +38,10 @@ User Home Page
 
       </div>
 
+      @endif
 
+
+      @if(count($offers))
       <h4 class="text-uppercase text-bold mb-4" style="margin-top: 125px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Special Offers</h4>
 
       <div class="row gy-3">
@@ -55,12 +57,16 @@ User Home Page
             <div class="text-end">
               <span>{{ $item["updated_at"] }}</span> <br>
             </div>
-            <p class="text-justify ms-4">{{ $item["description"] }}</p>
+            <p class="text-justify ms-4">
+              {{ $item["description"] }}
+            </p>
           </div>
         </div>
         @endforeach
 
       </div>
+
+      @endif
 
     </div>
   </div>

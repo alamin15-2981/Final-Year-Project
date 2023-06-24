@@ -50,6 +50,7 @@ Job Show
                 </div>
                 <div class="card-footer text-body-secondary">
                     <mark>{{ $item['updated_at'] }}</mark>
+                    <button class="btn btn-sm btn-primary float-end text-capitalize text-bold">upload cv</button>
                 </div>
             </div>
             @endforeach
