@@ -125,7 +125,7 @@ textarea {
     margin-bottom: 0px;
 }
 .sub-nav {
-    display: none;
+    display: block;
 }
 .sub-nav ul {
     margin: 0px;
@@ -149,4 +149,37 @@ textarea {
 }
 .showActivity {
     display: block;
+}
+#toggle-navbar {
+    display: none;
+}
+
+/*
+**************************
+    Responsive Css
+**************************
+*/
+
+@media only screen and (max-width: 1400px) {
+    .admin-aside {
+        display: none;
+    }
+    #admin-layout > section {
+        width: 100% !important;
+    }
+    #toggle-navbar {
+        display: block;
+    }
+    .showNavbar {
+        display: block !important;
+        z-index: 10;
+        width: 30% !important;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .showNavbar {
+        display: block !important;
+        z-index: 10;
+        width: 50% !important;
+    }
 }

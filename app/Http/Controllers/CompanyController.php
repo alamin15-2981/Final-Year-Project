@@ -221,20 +221,9 @@ class CompanyController extends Controller
         $info = (array) DB::table("company_registration")
             ->where("email", session("gmail"))->first();
 
-        $jobFeedback = DB::table("company_job_feedback")
-            ->join("company_registration", "company_registration.id", "company_job_feedback.company_id")
-            ->select("company_registration.*", "company_job_feedback.*")
-            ->get()
-            ->toArray();
-
-        $feedback = [];
-        foreach ($jobFeedback as $item) {
-            $feedback[] = (array) $item;
-        }
-
 
         if (session("gmail"))
-            return view("company.pages.company_profile", compact("jobs","feedback","info"));
+            return view("company.pages.company_profile", compact("jobs","info"));
         else
             return redirect("company_login");
     }
@@ -281,30 +270,24 @@ class CompanyController extends Controller
         return redirect("company_profile");
     }
 
-    # company jobFeedback
-    public function jobFeedback(Request $req)
+    # company showJobComment
+    public function showJobComment($id=null)
     {
-        $data = (array) DB::table("company_registration")
-            ->where("email", session("gmail"))->first();
+        $resumeInfo = DB::table("users_resume")->where("job_post_id", $id)->get();
+        $resumeList = [];
+        foreach ($resumeInfo as $item) {
+            $resumeList[] = (array) $item;
+        }
 
-        $id = $data['id'];
-        $comment = $req->input("comment");
+        if (count($resumeList)) {
+            $getReumeInfoForId = (array) DB::table("users_resume")->where("job_post_id", $id)->first();
 
-        $info = new CompanyJobFeedback();
-        $info->comment = $comment;
-        $info->company_id = $id;
-        $info->save();
-
-        return redirect("company_profile");
-    }
-
-    # company deleteJobFeedback
-    public function deleteJobFeedback($id = null)
-    {
-        $info = CompanyJobFeedback::find($id);
-        $info->delete();
-
-        return redirect("company_profile");
+            $user_id = $getReumeInfoForId['user_id'];
+            $userData = (array) DB::table("users_registration")->where('id', $user_id)->first();
+            return view("company.pages.company_job_comment", compact("userData", "resumeList"));
+        } else {
+            return redirect("company_profile");
+        }
     }
 
     # company settingsPage
@@ -372,8 +355,7 @@ class CompanyController extends Controller
                 $newArr[] = (array) $item;
             }
 
-            $feedback = CompanyWatchFeedback::all()->toArray();
-            return view("company.pages.company_watch", compact("newArr", "feedback"));
+            return view("company.pages.company_watch", compact("newArr"));
         } else
             return redirect("company_login");
     }

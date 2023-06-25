@@ -29,6 +29,7 @@ Admin company job post Page
                 <!-- users registration table -->
                 @if(count($companyJobPost))
                 <div class="col-xxl-12 my-3 shadow-sm p-3 rounded table-box-height">
+                    <button class="btn btn-sm btn-info float-end" id="toggle-navbar" onclick="showNavContainer('admin-aside')"><i class="fa-sharp fa-solid fa-bars-staggered"></i></button>
                     <h2><i class="fa-solid fa-users"></i> Job Post</h2>
                     <div class="table-responsive">
                         <table class="table my-3 align-middle table-stripped table-hover text-center">
@@ -54,7 +55,7 @@ Admin company job post Page
                                     <td>{{ $data['company_id'] }}</td>
                                     <td>{{ $data['created_at'] }}</td>
                                     <td>{{ $data['updated_at'] }}</td>
-                                    <td><a href="" class="btn btn-sm btn-danger">Remove</a></td>
+                                    <td><a href="{{ URL::to('job_post_delete/'.$data['id']).'/company_job_post/admin_job_post' }}" class="btn btn-sm btn-danger">Remove</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

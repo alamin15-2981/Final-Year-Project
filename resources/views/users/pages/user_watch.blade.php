@@ -27,7 +27,7 @@ User Watch Page
 
                 @foreach($newArr as $item)
                 <div class="col-xxl-6">
-                    <div class="card p-3 border rounded shadow-sm">
+                    <div class="card p-3 border-0 shadow rounded">
                         <div>
                             <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                             <span>{{ $item["name"] }}</span> <br>

@@ -18,13 +18,13 @@
 
                 <!-- Welcome Right Aside Bar -->
                 <div class="col-xxl-6" id="welcome-right-part">
-                    <h1 class="display-3 text-capitalize text-center text-bold">Find and apply your dream job with us now</h1>
+                    <h1 class="display-3 text-capitalize text-center text-bold text-primary">Find and apply your dream job with us now</h1>
                     <p class="text-justify my-4">An Employment Website Is A Website That Deals Specifically With Employment Or Careers. Many Employment Websites Are Designed To Allow Employers To Post Job Requirements For A Position To Be Filled And Are Commonly Known As Job Boards.Through A Job Website, A Prospective Employee Can Locate And Fill Out A Job Application Or Submit Resumes Over The Internet For The Advertised Position.</p>
 
                     <!-- bottom card content -->
                     <section class="d-flex flex-wrap justify-content-center align-items-center">
 
-                        <a href="{{ route('user_login') }}" class="text-decoration-none text-dark card p-3 rounded-2 text-center m-2 bg-dark shadow-sm" id="welcome-card">
+                        <a href="{{ route('user_login') }}" class="text-decoration-none text-dark card p-3 rounded-2 text-center m-2 bg-primary shadow-sm" id="welcome-card">
                             <img src="{{ asset('assets/users/img/welcome/target-audience.png') }}" alt="...photo" class="img-fluid mx-auto img-thumbnail">
                             <h2 class="mt-3 text-bold text-light">User Login</h2>
                             <p class="text-light">Users should make A profile for Find Dream Job.</p>

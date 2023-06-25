@@ -44,13 +44,12 @@ Company Watch Page
 
             @if(count($newArr))
             <!-- Video watch -->
-            <h4 class="text-uppercase text-bold mb-4 text-end h6" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your Watch Video</h4>
 
-            <div class="row my-4">
+            <div class="row mt-5">
 
                 @foreach($newArr as $item)
                 <div class="col-xxl-6">
-                    <div class="card p-3 border rounded shadow-sm">
+                    <div class="card p-3 border-0 mb-4 shadow">
                         <div>
                             <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                             <span>{{ $item["name"] }}</span> <br>
@@ -67,10 +66,6 @@ Company Watch Page
                         <iframe class="ratio ratio-16x9 mt-4" src="{{ $item['url'] }}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                         <p class="text-justify my-3">{{ $item["description"] }}</p>
 
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Feedback
-                        </button>
                     </div>
 
 
@@ -100,42 +95,6 @@ Company Watch Page
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                    <span>{{ $item['name'] }}</span>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('company_watch_feedback') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method("POST")
-                                        <div class="mb-3">
-                                            <label class="form-label">Comment</label>
-                                            <textarea name="comment" cols="40" rows="7" placeholder="Message" required class="form-control"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="submit" name="btn" value="Upload" class="btn btn-sm btn-primary w-100">
-                                        </div>
-                                    </form>
-                                </div>
-                                @foreach($feedback as $data)
-                                <div class="my-4 px-3 shadow-sm">
-                                    <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                    <span>{{ $item["name"] }}</span>
-                                    <a href="{{ URL::to('/company_watch_delete_feedback/'.$data['id']) }}">
-                                        <i class="fa-solid fa-trash cursor-pointer float-end"></i>
-                                    </a>
-                                    <p class="text-justify">{{ $data["comment"] }}</p>
-                                </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>

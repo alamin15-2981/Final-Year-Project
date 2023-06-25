@@ -2,7 +2,7 @@
 
 <!-- Title For Application -->
 @section("user-title")
-Admin watch Page
+Admin user resume Page
 @endsection
 
 <!-- Main Content Body -->
@@ -27,18 +27,19 @@ Admin watch Page
                 </div>
 
                 <!-- users registration table -->
-                @if(count($watchData))
+                @if(count($resumeData))
                 <div class="col-xxl-12 my-3 shadow-sm p-3 rounded table-box-height">
                     <button class="btn btn-sm btn-info float-end" id="toggle-navbar" onclick="showNavContainer('admin-aside')"><i class="fa-sharp fa-solid fa-bars-staggered"></i></button>
-                    <h2><i class="fa-solid fa-users"></i> Job Post</h2>
+                    <h2><i class="fa-solid fa-users"></i> Resume List</h2>
                     <div class="table-responsive">
                         <table class="table my-3 align-middle table-stripped table-hover text-center">
                             <thead>
                                 <tr>
                                     <th>S.N</th>
-                                    <th>url</th>
-                                    <th>description</th>
-                                    <th>company_id</th>
+                                    <th>email</th>
+                                    <th>resume</th>
+                                    <th>job_post_id</th>
+                                    <th>user_id</th>
                                     <th>created_at</th>
                                     <th>updated_at</th>
                                     <th>Action</th>
@@ -46,16 +47,17 @@ Admin watch Page
                             </thead>
                             <tbody>
                                 @php($count=0)
-                                @foreach($watchData as $data)
+                                @foreach($resumeData as $data)
                                 @php($count++)
                                 <tr>
                                     <td>{{ $count }}</td>
-                                    <td>{{ $data['url'] }}</td>
-                                    <td>{{ $data['description'] }}</td>
-                                    <td>{{ $data['company_id'] }}</td>
+                                    <td>{{ $data['email'] }}</td>
+                                    <td>{{ $data['resume'] }}</td>
+                                    <td>{{ $data['job_post_id'] }}</td>
+                                    <td>{{ $data['user_id'] }}</td>
                                     <td>{{ $data['created_at'] }}</td>
                                     <td>{{ $data['updated_at'] }}</td>
-                                    <td><a href="{{ URL::to('watch_delete/'.$data['id']).'/company_watch/admin_watch' }}" class="btn btn-sm btn-danger">Remove</a></td>
+                                    <td><a href="{{ URL::to('resume_delete/'.$data['id']).'/users_resume/admin_resume' }}" class="btn btn-sm btn-danger">Remove</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

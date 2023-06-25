@@ -26,7 +26,7 @@ User Home Page
       <div class="row gy-3">
 
         @foreach($info as $data)
-        <div class="col-xxl-4" id="user-home-job-category">
+        <div class="col-xxl-4 border-0 rounded shadow mx-2" id="user-home-job-category">
           <a href="{{ route('user_job_show') }}" class="text-decoration-none text-dark">
             <div class="rounded p-3 position-relative">
               <i class="fa-sharp fa-solid fa-arrow-right me-4"></i>
@@ -48,7 +48,7 @@ User Home Page
 
         @foreach($offers as $item)
         <div class="col-xxl-6">
-          <div class="border rounded p-3 shadow-sm cursor-pointer">
+          <div class="p-3 shadow">
             <div>
               <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
               <span>{{ $item["name"] }}</span> <br>

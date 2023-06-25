@@ -54,12 +54,11 @@ Company Home Page
 
         @if(count($offers))
         <!-- special offers -->
-        <h4 class="text-uppercase text-bold mb-4 text-center" style="margin-top: 75px;"><i class="fa-solid fa-arrow-up-wide-short"></i> Your's Offer</h4>
-        <div class="row gy-3">
+        <div class="row">
 
           @foreach($offers as $item)
           <div class="col-xxl-6">
-            <div class="border rounded p-3 shadow-sm cursor-pointer">
+            <div class="p-3 shadow mb-4">
               <div>
                 <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                 <span>{{ $item["name"] }}</span> <br>
@@ -120,7 +119,7 @@ Company Home Page
 
           @foreach($idea as $item)
           <div class="col-xxl-6">
-            <div class="card p-3 border rounded shadow-sm">
+            <div class="card p-3 border-0 rounded shadow">
               <div>
                 <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                 <span>{{ $item["name"] }}</span> <br>
@@ -130,44 +129,6 @@ Company Home Page
                 <span>{{ $item["updated_at"] }}</span> <br>
               </div>
               <p class="text-justify my-3">{{ $item["description"] }}</p>
-
-
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Feedback
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                      <span>{{ $item["name"] }}</span>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form action="" method="POST" enctype="multipart/form-data">
-                        @csrf 
-                        @method("POST")
-                        <div class="mb-3">
-                          <label class="form-label">Comment</label>
-                          <textarea name="comment" cols="40" rows="7" placeholder="Message" required class="form-control"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <input type="submit" name="btn" value="Submit" class="btn btn-sm btn-primary w-100">
-                        </div>
-                      </form>
-                    </div>
-                    <div class="my-4 px-3 shadow-sm">
-                      <img src="https://media.istockphoto.com/id/1177915762/fr/photo/bel-homme-latin.jpg?s=612x612&w=0&k=20&c=p0fE_GYI2mWBJkVkDncsHK_r8UB-DL5h3W5wJPBqJX0=" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                      <span>Md Shovon</span>
-                      <i class="fa-solid fa-trash cursor-pointer float-end"></i>
-                      <p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere aperiam nihil exercitationem soluta vitae unde sint consectetur dolorum sunt aliquid.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
 
             </div>

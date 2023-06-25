@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+
     # login page display
     public function loginPage(){
+        if(session("email"))return redirect("admin_home");
        return view("admin.login");
     }
 
@@ -23,6 +26,7 @@ class AdminController extends Controller
         $password = $req->input("password");
 
         if($adminEmail == $email and $adminPwd == $password) {
+            session()->put("email",$adminEmail);
             return redirect("admin_home");
         }else{
             session()->flash("login_failed","Email or password is invalid!");
@@ -42,6 +46,8 @@ class AdminController extends Controller
 
     # home page display 
     public function homePage(){
+        if(!session("email"))return redirect("admin");
+
         // get users registration data
         $usersRegister = $this->getDatabaseTableInfo("users_registration");
 
@@ -51,8 +57,23 @@ class AdminController extends Controller
         return view("admin.pages.home",compact("usersRegister","companyRegister"));
     }
 
+
+    // deleteInfo
+    public function deleteInfo($id,$tableName,$path){
+        try {
+            DB::table($tableName)->delete($id);
+            return redirect($path);
+        }catch(Exception $err) {
+            session()->flash("error-msg","Cannot delete or update a parent row");
+            return redirect($path);
+        }
+    }
+
+
     // get users idea share data
     public function getUsersIdeaData(){
+        if(!session("email"))return redirect("admin");
+        
         $users_ideaData = DB::table("users_idea")->select("*")->get();
         $users_idea = [];
         foreach($users_ideaData as $item) {
@@ -63,6 +84,8 @@ class AdminController extends Controller
 
     # user idea share page display
     public function userIdeaShare(){
+        if(!session("email"))return redirect("admin");
+        
         // get users registration data
         $usersRegister = $this->getDatabaseTableInfo("users_registration");
 
@@ -78,6 +101,8 @@ class AdminController extends Controller
     # Company's information
     # job post display
     public function showPostJob(){
+        if(!session("email"))return redirect("admin");
+        
        // get users registration data
        $usersRegister = $this->getDatabaseTableInfo("users_registration");
 
@@ -92,6 +117,8 @@ class AdminController extends Controller
 
     # company offers display
     public function companyOffers(){
+        if(!session("email"))return redirect("admin");
+        
        // get users registration data
        $usersRegister = $this->getDatabaseTableInfo("users_registration");
 
@@ -106,6 +133,8 @@ class AdminController extends Controller
 
     # company watch page display
     public function watchPage(){
+        if(!session("email"))return redirect("admin");
+        
        // get users registration data
        $usersRegister = $this->getDatabaseTableInfo("users_registration");
 
@@ -117,4 +146,28 @@ class AdminController extends Controller
 
         return view("admin.pages.company_watch",compact("watchData","usersRegister","companyRegister"));
     } 
+
+    # company resume page display
+    public function resumePage(){
+        if(!session("email"))return redirect("admin");
+        
+       // get users registration data
+       $usersRegister = $this->getDatabaseTableInfo("users_registration");
+
+       // get company registration data
+       $companyRegister = $this->getDatabaseTableInfo("company_registration");
+
+        // get watch data
+        $resumeData = $this->getDatabaseTableInfo("users_resume");
+
+        return view("admin.pages.user_resume",compact("resumeData","usersRegister","companyRegister"));
+    } 
+
+    # admin logut page
+    public function logoutPage(){
+        if(session('email')){
+            session()->pull('email',null);
+        }
+        return redirect("admin");
+    }
 }

@@ -12,25 +12,23 @@ User Profile Page
         <div class="col-xxl-12">
 
             <!-- User Home Cover Photo -->
-            <img src="{{ asset('storage/img/users/register/cover/'.$info['cover_photo']) }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
+            <div class="position-relative">
+                <img src="{{ asset('storage/img/users/register/cover/'.$info['cover_photo']) }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
+
+                <!-- profile photo display -->
+                <div style="width: 150px;height: 150px;top: 213px;right: 85px;z-index: 10;" class="position-absolute rounded-circle">
+                    <img src="{{ asset('storage/img/users/register/profile/'.$info['profile_photo']) }}" alt="...photo" class="rounded-circle img-thumbnail" style="width: 150px;height: 150px;top: 213px;right: 85px;z-index: 10;">
+                </div>
+            </div>
 
             <!-- Navigation Menu -->
             <x-user-navbar />
             <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
-
+       
             <div class="row">
-                <!-- profile photo display -->
-                <div class="col-xxl-12 text-end">
-
-                    <figure class="figure">
-                        <img src="{{ asset('storage/img/users/register/profile/'.$info['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail shadow-sm figure-img rounded-circle" id="profile_photo_size">
-                        <figcaption class="figure-caption text-center">{{ $info["name"] }}</figcaption>
-                    </figure>
-
-                </div>
 
                 <!-- Idea share form -->
-                <div class="col-xxl-12 mt-2 border p-4">
+                <div class="col-xxl-12 mt-2 border-0 p-4">
 
                     @if(session("idea_post_success"))
                     <div class="alert alert-success text-center">
@@ -65,12 +63,11 @@ User Profile Page
 
             <!-- Information Show -->
             @if(count($jobs))
-            <h1 class="text-end mt-4 h5"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
             <div class="row my-5">
 
-            @foreach($jobs as $item)
+                @foreach($jobs as $item)
                 <div class="col-xxl-6">
-                    <div class="card p-3 border rounded shadow-sm">
+                    <div class="card p-3 border-0 shadow">
                         <div>
                             <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                             <span>{{ $item["name"] }}</span> <br>
@@ -121,7 +118,7 @@ User Profile Page
                 @endforeach
 
             </div>
-        @endif
+            @endif
 
         </div>
     </div>

@@ -100,7 +100,6 @@
                                                     <i class="fa-sharp fa-solid fa-image"></i> Photo
                                                 </label>
                                                 <input type="file" name="profile_photo" class="form-control" accept="image/*" required>
-                                                <mark class="text-danger">* {{ $info['profile_photo'] }}</mark>
                                             </div>
 
                                             <div class="mb-3">
@@ -108,7 +107,6 @@
                                                     <i class="fa-sharp fa-solid fa-image"></i> Cover Photo
                                                 </label>
                                                 <input type="file" name="cover_photo" class="form-control" accept="image/*" required>
-                                                <mark class="text-danger">* {{ $info['cover_photo'] }}</mark>
                                             </div>
 
                                             <div class="mb-3">

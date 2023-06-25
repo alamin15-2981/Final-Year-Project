@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('company_watch_feedback', function (Blueprint $table) {
+        Schema::create('users_resume', function (Blueprint $table) {
             $table->id();
-            $table->text("comment");
-            $table->unsignedBigInteger("company_id");
-            $table->foreign("company_id")->references("id")->on("company_registration");
+            $table->string("email");
+            $table->string("resume");
+            $table->integer("job_post_id");
+            $table->integer("user_id");
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('company_watch_feedback');
+        Schema::dropIfExists('users_resume');
     }
 };

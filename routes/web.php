@@ -18,7 +18,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("/");
 
 ##########################
 # User Page Routes
@@ -39,6 +39,9 @@ Route::post("/user_change_password_edit",[UserController::class,"changePassword"
 # home page
 Route::get("/user_home",[UserController::class,"homePage"])->name("user_home");
 Route::get("/user_job_show",[UserController::class,"showJob"])->name("user_job_show");
+Route::post("/user_job_resume_upload",[UserController::class,"resumeUpload"])->name('user_job_resume_upload');
+Route::get("/user_job_comment/{id?}",[UserController::class,"jobComment"])->name("user_job_comment");
+Route::get("/user_job_comment_delete/{id?}",[UserController::class,"jobCommentDelete"]);
 
 # users profile 
 Route::get("/user_profile",[UserController::class,"profilePage"])->name("user_profile");
@@ -90,8 +93,7 @@ Route::get("/company_profile",[CompanyController::class,"profilePage"])->name("c
 Route::post("/company_job_post",[CompanyController::class,"jobPost"])->name("company_job_post");
 Route::post("/company_job_update/{id?}",[CompanyController::class,"updatePost"])->name("company_job_update");
 Route::get("/company_job_delete/{id?}",[CompanyController::class,"deletePost"])->name("company_job_delete");
-Route::post("/company_job_feedback",[CompanyController::class,"jobFeedback"])->name("company_job_feedback");
-Route::get("/company_job_feedback_delete/{id?}",[CompanyController::class,"deleteJobFeedback"])->name("company_job_feedback_delete");
+Route::get("/company_job_comment/{id?}",[CompanyController::class,"showJobComment"])->name("company_job_comment");
 
 # company settings
 Route::get("/company_settings",[CompanyController::class,"settingsPage"])->name("company_settings");
@@ -102,8 +104,6 @@ Route::get("/company_watch",[CompanyController::class,"watchPage"])->name("compa
 Route::post("/company_watch_data",[CompanyController::class,"watchData"])->name("company_watch_data");
 Route::post("/company_watch_update/{id?}",[CompanyController::class,"updateWatch"])->name("company_watch_update");
 Route::get("/company_watch_delete/{id?}",[CompanyController::class,"deleteWatch"])->name("company_watch_delete");
-Route::post("/company_watch_feedback",[CompanyController::class,"watchFeedback"])->name("company_watch_feedback");
-Route::get("/company_watch_delete_feedback/{id?}",[CompanyController::class,"deleteFeedback"])->name("company_watch_delete_feedback");
 
 # company logout
 Route::get("/company_logout",[CompanyController::class,"logoutPage"])->name("company_logout");
@@ -122,17 +122,30 @@ Route::post("/admin_loginData",[AdminController::class,"loginValidation"])->name
 # User's information
 # home page
 Route::get("/admin_home",[AdminController::class,"homePage"])->name("admin_home");
+Route::get("/user_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
+Route::get("/company_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
 
 # share idea from user
 Route::get("/admin_user_share_idea",[AdminController::class,"userIdeaShare"])->name("admin_user_share_idea");
+Route::get("/idea_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
 
 
 # Company's information
 # job post page
 Route::get("/admin_job_post",[AdminController::class,"showPostJob"])->name("admin_job_post");
+Route::get("/job_post_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
 
 # offers page
 Route::get("/admin_offers",[AdminController::class,"companyOffers"])->name("admin_offers");
+Route::get("/job_offers_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
 
 # watch page
 Route::get("/admin_watch",[AdminController::class,"watchPage"])->name("admin_watch");
+Route::get("/watch_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
+
+# resume page
+Route::get("/admin_resume",[AdminController::class,"resumePage"])->name("admin_resume");
+Route::get("/resume_delete/{id}/{tableName}/{path}",[AdminController::class,"deleteInfo"]);
+
+# admin logout 
+Route::get("/admin_logout",[AdminController::class,"logoutPage"])->name("admin_logout");

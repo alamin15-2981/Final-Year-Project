@@ -50,8 +50,41 @@ Job Show
                 </div>
                 <div class="card-footer text-body-secondary">
                     <mark>{{ $item['updated_at'] }}</mark>
-                    <button class="btn btn-sm btn-primary float-end text-capitalize text-bold">upload cv</button>
+                    <button class="btn btn-sm btn-primary float-end text-capitalize text-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">upload cv</button>
+                    <a href="{{ URL::to('user_job_comment/'.$item['id']) }}" class="btn btn-sm btn-info mx-3">
+                        Watch Resume
+                    </a>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <img src="{{ asset('storage/img/users/register/profile/'.$userData['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
+                                <span>{{ $userData["name"] }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('user_job_resume_upload') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method("POST")
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Resume</label>
+                                        <input type="file" name="resume" accept="application/pdf" class="form-control" required>
+                                        <input type="hidden" name="user_id" value="{{ $userData['id'] }}">
+                                        <input type="hidden" name="job_id" value="{{ $item['id'] }}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="submit" name="btn" value="Upload" class="btn btn-sm btn-primary w-100">
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
             @endforeach
 

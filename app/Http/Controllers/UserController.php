@@ -10,6 +10,7 @@ use App\Models\UsersRegister;
 use App\Models\UsersIdea;
 use App\Models\CompanyWatch;
 use App\Models\CompanyWatchFeedback;
+use App\Models\UsersResume;
 
 
 class UserController extends Controller
@@ -156,22 +157,15 @@ class UserController extends Controller
         foreach ($jobTitle as $title) {
             $info[] = (array) $title;
         }
-        
-        $registerData = (array) DB::table("users_registration")
-        ->where("email",session("gmail"))
-        ->get()
-        ->first();
-
-        $user_id = $registerData['user_id'];
 
         if (session("gmail"))
-            return view("users.pages.user_home", compact("offers","info","user_id"));
+            return view("users.pages.user_home", compact("offers", "info"));
         else
             return redirect("user_login");
     }
 
     # user showJob
-    public function showJob(Request $req)
+    public function showJob(Request $req, $id = null)
     {
         $data = $req->input("search_title") ?? "";
 
@@ -182,6 +176,9 @@ class UserController extends Controller
         foreach ($jobTitle as $title) {
             $info[] = (array) $title;
         }
+
+        $gmail = session("gmail");
+        $userData = (array) DB::table("users_registration")->where('email', $gmail)->first();
 
         if ($data != "") {
             $companyJob = DB::table("company_job_post")
@@ -196,7 +193,7 @@ class UserController extends Controller
                 $jobs[] = (array) $data;
             }
             if (session('gmail'))
-                return view("users.pages.user_job_show", compact("jobs","info"));
+                return view("users.pages.user_job_show", compact("jobs", "info", "userData"));
             else
                 return redirect("user_login");
         }
@@ -212,10 +209,63 @@ class UserController extends Controller
             $jobs[] = (array) $data;
         }
 
+        $resumeInfo = DB::table("users_resume")->select("*")->get();
+        $resumeList = [];
+        foreach ($resumeInfo as $item) {
+            $resumeList[] = (array) $item;
+        }
+
         if (session('gmail'))
-            return view("users.pages.user_job_show", compact("jobs","info"));
+            return view("users.pages.user_job_show", compact("jobs", "info", "userData", "resumeList"));
         else
             return redirect("user_login");
+    }
+
+    # user job Comment
+    public function jobComment($id = null)
+    {
+        $resumeInfo = DB::table("users_resume")->where("job_post_id", $id)->get();
+        $resumeList = [];
+        foreach ($resumeInfo as $item) {
+            $resumeList[] = (array) $item;
+        }
+
+        if (count($resumeList)) {
+            $getReumeInfoForId = (array) DB::table("users_resume")->where("job_post_id", $id)->first();
+
+            $user_id = $getReumeInfoForId['user_id'];
+            $userData = (array) DB::table("users_registration")->where('id', $user_id)->first();
+            return view("users.pages.user_job_comment", compact("userData", "resumeList"));
+        } else {
+            return redirect("user_job_show");
+        }
+    }
+
+    # user jobCommentDelete
+    public function jobCommentDelete($id = null)
+    {
+        DB::table("users_resume")->delete($id);
+        return redirect("user_job_comment");
+    }
+
+    # user resume upload
+    public function resumeUpload(Request $req)
+    {
+        $email = session("gmail");
+        $resume = $req->file("resume");
+        $resumeName = time() . "_" . uniqid() . "_" . $resume->getClientOriginalName();
+        $resume->storeAs("public/img/users/register/resume", $resumeName);
+        $job_id = $req->input("job_id");
+        $user_id = $req->input("user_id");
+
+        $resumeInfo = new UsersResume();
+        $resumeInfo->email = $email;
+        $resumeInfo->resume = $resumeName;
+        $resumeInfo->job_post_id = $job_id;
+        $resumeInfo->user_id = $user_id;
+        $resumeInfo->save();
+
+        return redirect("user_job_show");
     }
 
     # user profilePage
@@ -344,8 +394,7 @@ class UserController extends Controller
                 $newArr[] = (array) $item;
             }
 
-            $feedback = CompanyWatchFeedback::all()->toArray();
-            return view("users.pages.user_watch", compact("newArr", "feedback"));
+            return view("users.pages.user_watch", compact("newArr"));
         } else
             return redirect("user_login");
     }

@@ -12,22 +12,21 @@ Company Profile Page
         <div class="col-xxl-12">
 
             <!-- User Home Cover Photo -->
-            <img src="{{ asset('storage/img/company/register/cover/'.$info['cover_photo']) }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
+            <div class="position-relative">
+                <img src="{{ asset('storage/img/company/register/cover/'.$info['cover_photo']) }}" alt="...photo" class="img-fluid w-100 object-fit-cover img-thumbnail" id="user-home-cover-pic">
+
+                <!-- profile photo display -->
+                <div style="width: 150px;height: 150px;top: 213px;right: 85px;z-index: 10;" class="position-absolute rounded-circle">
+                    <img src="{{ asset('storage/img/company/register/profile/'.$info['profile_photo']) }}" alt="...photo" class="img-thumbnail rounded-circle" width="150px" height="150px" style="width: 150px;height: 150px;top: 213px;right: 85px;z-index: 10;">
+                </div>
+            </div>
+
 
             <!-- Navigation Menu -->
             <x-company-navbar />
             <h1 class="text-end h5 my-4">🅲🅰🆁🅴🅴🆁 🅸🅽🅷🅰🅽🅲🅴</h1>
 
             <div class="row">
-                <!-- profile photo display -->
-                <div class="col-xxl-12 text-end">
-
-                    <figure class="figure">
-                        <img src="{{ asset('storage/img/company/register/profile/'.$info['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail shadow-sm figure-img rounded-circle" id="profile_photo_size">
-                        <figcaption class="figure-caption text-center">{{ $info["name"] }}</figcaption>
-                    </figure>
-
-                </div>
 
                 <!-- Idea share form -->
                 <div class="col-xxl-12 p-4">
@@ -81,12 +80,11 @@ Company Profile Page
 
             @if(count($jobs))
             <!-- Information Show -->
-            <h1 class="text-bold text-end mt-4 h5"><i class="fa-sharp fa-solid fa-signs-post"></i> Your Post</h1>
-            <div class="row my-5">
+            <div class="row">
 
                 @foreach($jobs as $item)
-                <div class="col-xxl-6">
-                    <div class="card p-3 border rounded shadow-sm">
+                <div class="col-xxl-6 mb-4">
+                    <div class="card p-3 border-0 shadow">
                         <div>
                             <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                             <span>{{ $item["name"] }}</span> <br>
@@ -101,6 +99,10 @@ Company Profile Page
                         </div>
                         <strong class="text-center my-3"># {{ $item["title"] }}</strong>
                         <p class="text-justify my-3">{{ $item["description"] }}</p>
+
+                        <a href="{{ URL::to('company_job_comment/'.$item['id']) }}" class="btn btn-sm text-end mx-3 text-decoration-underline text-primary">
+                            Watch Resume
+                        </a>
 
                         <!-- Update Modal -->
                         <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -128,50 +130,6 @@ Company Profile Page
                                             </div>
                                         </form>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Feedback
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                        <span>{{ $item["name"] }}</span>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('company_job_feedback') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method("POST")
-                                            <div class="mb-3">
-                                                <label class="form-label">Comment</label>
-                                                <input type="hidden" id="inputId" name="job_id">
-                                                <textarea name="comment" cols="40" rows="7" placeholder="Message" required class="form-control"></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <input type="submit" name="btn" value="Comment" class="btn btn-sm btn-primary w-100">
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    @foreach($feedback as $data) 
-                                    <div class="my-4 px-3 shadow-sm">
-                                        <img src="{{ asset('storage/img/company/register/profile/'.$data['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                                        <span>{{ $data['name'] }}</span>
-                                        <a href="{{ URL::to('company_job_feedback_delete/'.$data['id']) }}">
-                                            <i class="fa-solid fa-trash cursor-pointer float-end"></i>
-                                        </a>
-                                        <p class="text-justify">{{ $data['comment'] }}</p>
-                                    </div>
-                                    @endforeach
-
                                 </div>
                             </div>
                         </div>

@@ -25,6 +25,9 @@ textarea {
 .cursor-pointer {
     cursor: pointer;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 
 /*
 **************************

@@ -15,6 +15,11 @@ Admin Home Page
     <section>
         <div class="container-fluid">
             <div class="row">
+                @if(session("error-msg"))
+                <div class="alert alert-danger text-center">
+                    <i class="fa-solid fa-triangle-exclamation"></i> {{ session("error-msg") }}
+                </div>
+                @endif
                 <div class="col-xxl-12 d-flex">
                     <div class="shadow p-4 border-2 border-secondary w-50 d-flex flex-wrap flex-column justify-content-center align-items-center me-2 bg-warning">
                         <span class="display-1">{{ count($usersRegister) }}</span>
@@ -29,6 +34,8 @@ Admin Home Page
                 <!-- users registration table -->
                 @if(count($usersRegister))
                 <div class="col-xxl-12 my-3 shadow-sm p-3 rounded table-box-height">
+                    <button class="btn btn-sm btn-info float-end" id="toggle-navbar" onclick="showNavContainer('admin-aside')"><i class="fa-sharp fa-solid fa-bars-staggered"></i></button>
+                    <div class="clearfix"></div>
                     <h2><i class="fa-solid fa-users"></i> Users List</h2>
                     <div class="table-responsive">
                         <table class="table my-3 align-middle table-stripped table-hover text-center">
@@ -61,16 +68,16 @@ Admin Home Page
                                         </a>
                                     </td>
                                     <td>
-                                    <a href="{{ asset('storage/img/users/register/cover/'.$data['cover_photo']) }}">
+                                        <a href="{{ asset('storage/img/users/register/cover/'.$data['cover_photo']) }}">
                                             <img style="width: 70px;height: 70px;border-radius: 5px;" src="{{ asset('storage/img/users/register/cover/'.$data['cover_photo']) }}" alt="...photo">
-                                        </a>    
+                                        </a>
                                     </td>
                                     <td>{{ $data['gender'] }}</td>
                                     <td>{{ $data['birth_date'] }}</td>
                                     <td>{{ $data['address'] }}</td>
                                     <td>{{ $data['created_at'] }}</td>
                                     <td>{{ $data['updated_at'] }}</td>
-                                    <td><a href="" class="btn btn-sm btn-danger">Remove</a></td>
+                                    <td><a href="{{ URL::to('user_delete/'.$data['id']).'/users_registration/admin_home' }}" class="btn btn-sm btn-danger">Remove</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -110,12 +117,12 @@ Admin Home Page
                                     <td>{{ $data['name'] }}</td>
                                     <td>{{ $data['email'] }}</td>
                                     <td>
-                                    <a href="{{ asset('storage/img/company/register/profile/'.$data['profile_photo']) }}">
+                                        <a href="{{ asset('storage/img/company/register/profile/'.$data['profile_photo']) }}">
                                             <img style="width: 70px;height: 70px;border-radius: 5px;" src="{{ asset('storage/img/company/register/profile/'.$data['profile_photo']) }}" alt="...photo">
                                         </a>
                                     </td>
                                     <td>
-                                    <a href="{{ asset('storage/img/company/register/cover/'.$data['cover_photo']) }}">
+                                        <a href="{{ asset('storage/img/company/register/cover/'.$data['cover_photo']) }}">
                                             <img style="width: 70px;height: 70px;border-radius: 5px;" src="{{ asset('storage/img/company/register/cover/'.$data['cover_photo']) }}" alt="...photo">
                                         </a>
                                     </td>
@@ -124,7 +131,7 @@ Admin Home Page
                                     <td>{{ $data['address'] }}</td>
                                     <td>{{ $data['created_at'] }}</td>
                                     <td>{{ $data['updated_at'] }}</td>
-                                    <td><a href="" class="btn btn-sm btn-danger">Remove</a></td>
+                                    <td><a href="{{ URL::to('company_delete/'.$data['id']).'/company_registration/admin_home' }}" class="btn btn-sm btn-danger">Remove</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
