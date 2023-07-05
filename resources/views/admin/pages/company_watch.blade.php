@@ -30,7 +30,7 @@ Admin watch Page
                 @if(count($watchData))
                 <div class="col-xxl-12 my-3 shadow-sm p-3 rounded table-box-height">
                     <button class="btn btn-sm btn-info float-end" id="toggle-navbar" onclick="showNavContainer('admin-aside')"><i class="fa-sharp fa-solid fa-bars-staggered"></i></button>
-                    <h2><i class="fa-solid fa-users"></i> Job Post</h2>
+                    <h2><i class="fa-solid fa-users"></i> Watch Post</h2>
                     <div class="table-responsive">
                         <table class="table my-3 align-middle table-stripped table-hover text-center">
                             <thead>
