@@ -123,6 +123,7 @@ Company Home Page
               <div>
                 <img src="{{ asset('storage/img/users/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                 <span>{{ $item["name"] }}</span> <br>
+                <a href="mailto:{{ $item['email'] }}" class="float-end"><i class="fa-solid fa-envelope"></i></a>
               </div>
               <strong class="ms-4 text-center"># {{ $item["title"] }}</strong>
               <div class="text-end">
