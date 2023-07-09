@@ -31,6 +31,7 @@ User Watch Page
                         <div>
                             <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
                             <span>{{ $item["name"] }}</span> <br>
+                            <a href="mailto:{{ $item['email'] }}" class="float-end mb-2"><i class="fa-solid fa-envelope"></i></a> <br>
                         </div>
                         <div class="text-end">
                             <span>{{ $item["updated_at"] }}</span> <br>

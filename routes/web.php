@@ -19,6 +19,8 @@ use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('welcome');
 })->name("/");
+Route::get("/users_update_information/{id?}",[UserController::class,"updateInfoPage"])->name("users_update_information");
+Route::get("/company_update_information/{id?}/{database?}",[CompanyController::class,"updateInfoPage"])->name("update_information");
 
 ##########################
 # User Page Routes

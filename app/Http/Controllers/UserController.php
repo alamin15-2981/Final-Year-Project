@@ -269,8 +269,9 @@ class UserController extends Controller
     }
 
     # user profilePage
-    public function profilePage()
+    public function profilePage($id = null)
     {
+        
         $usersIdea = DB::table("users_idea")
             ->join("users_registration", "users_registration.id", "users_idea.users_id")
             ->select("users_registration.*", "users_idea.*")
@@ -289,6 +290,20 @@ class UserController extends Controller
             return view("users.pages.user_profile", compact("jobs", "info"));
         else
             return redirect("user_login");
+    }
+
+    # update modal information page
+    public function updateInfoPage(Request $req) {
+        $id = $req->id;
+
+        $item = (array) DB::table("users_idea")
+            ->where("users_idea.id",$id)
+            ->join("users_registration", "users_registration.id", "users_idea.users_id")
+            ->select("users_registration.*", "users_idea.*")
+            ->get()
+            ->first();
+
+        return view("reuse.users_update_info",compact("item"));
     }
 
     # users profileData

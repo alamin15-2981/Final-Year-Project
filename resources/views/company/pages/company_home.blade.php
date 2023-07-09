@@ -66,7 +66,9 @@ Company Home Page
               <strong class="ms-4 d-block text-center"># {{ $item["title"] }}</strong>
               <div class="text-end">
                 <span>{{ $item["updated_at"] }}</span> <br>
-                <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-bs-toggle="modal" data-bs-target="#updateModal"></i>
+                <a href="{{ URL::to('/company_update_information/'.$item['id'].'/company_offers') }}">
+                  <i class="fa-solid fa-pen-to-square me-3 cursor-pointer" data-bs-toggle="modal" data-bs-target="#updateModal"></i>
+                </a>
                 <a href="{{ URL::to('company_offers_delete/'.$item['id']) }}">
                   <i class="fa-solid fa-trash cursor-pointer"></i>
                 </a>
@@ -75,36 +77,6 @@ Company Home Page
             </div>
           </div>
 
-
-          <!-- Update Modal -->
-          <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <img src="{{ asset('storage/img/company/register/profile/'.$item['profile_photo']) }}" alt="...photo" class="img-fluid img-thumbnail" id="profile-small-img">
-                  <span>{{ $item["name"] }}</span>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form action="{{ URL::to('company_offers_update/'.$item['id']) }}" method="POST" class="my-4">
-                    @csrf 
-                    @method("POST")
-                    <div class="mb-3">
-                      <label class="form-label">Title</label>
-                      <input type="text" name="title" placeholder="Write Text" required class="form-control" value="{{ $item['title'] }}">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Description</label>
-                      <textarea name="description" class="form-control" cols="40" rows="7" placeholder="Description" required>{{ $item['description'] }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                      <input type="submit" name="btn" value="Update" class="btn btn-sm btn-primary w-100 text-bold">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
           @endforeach
 
         </div>

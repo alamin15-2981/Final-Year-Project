@@ -162,6 +162,26 @@ class CompanyController extends Controller
             return redirect("company_login");
     }
 
+    # update modal information page
+    public function updateInfoPage(Request $req) {
+        $id = $req->id;
+        $database = $req->database;
+
+        $item = (array) DB::table($database)
+            ->where("$database.id",$id)
+            ->join("company_registration", "company_registration.id", "$database.company_id")
+            ->select("company_registration.*", "$database.*")
+            ->get()
+            ->first();
+        
+        if($database == "company_offers")
+            return view("reuse.company_offers_update_page",compact("item"));
+        else if($database == "company_job_post")
+            return view("reuse.company_offers_update_page",compact("item"));
+        else if($database == "company_watch")
+            return view("reuse.company_watch_update_page",compact("item"));
+    }
+
     # company updateOffers
     public function updateOffers(Request $req, $id = null)
     {
