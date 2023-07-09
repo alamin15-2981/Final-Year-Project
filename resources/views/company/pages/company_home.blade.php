@@ -21,7 +21,7 @@ Company Home Page
 
       <div class="row gy-3">
 
-        <!-- Idea share form -->
+        <!-- Special offers form -->
         <div class="col-xxl-12 p-4">
 
           @if(session("offers_post_success"))
